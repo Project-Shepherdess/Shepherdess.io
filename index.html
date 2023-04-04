@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-16">
+
+        <title>Project Shepherdess</title>
+        <link rel="stylesheet" href="stylesheets/index.css">
+        <link rel="icon" href="favcon.png" type="image/png" sizes="32x32">
+        <link rel="shortcut icon" type="image/png" href="favicon.png" />
+        <link rel="apple-touch-icon" href="favicon.png">
+    </head>
+    <body>
+        <!-- floating navigation bar -->
+        <nav class="header" id="myHeader">
+            <table>
+                <td><a href="http://shepherdess.io"><img id="pslogo" src="images/projectsheppherdess.png"></td></a>
+                <td><a href="#about">ABOUT</a></td>
+                <td><a href="got.html">Glossary of Terms</a></td>
+                <!-- <td><a href="#agriculture">AGRICULTURE</a></td>
+                <td><a href="#paraterraforming">PARATERRAFORMING</a></td> -->
+                <td><button onclick="nightMode()">🌙</button></td>
+            </table>
+        </nav>
+        <!-- sheppherdess image -->
+        <img src="images/SIOBanner.png" href="shepherdess.io" id="psbanner" class="content" style="padding-top: 5vh;">
+
+        <!-- articles -->
+        <article id=about>
+            <h1>About Project Shepherdess</h1>
+            <h2>What?</h2>
+            <p>
+                Project Shepherdess is a multi-disciplinary initiative with the ultimate goal of developing an <a href="got.html#AGI">A.G.I/Artilect</a> for developing and nurturing <a href="got.html#ecocap">ecological capital</a> towards greater <a href="got.html#ecoasc">ecological ascendancy</a>, in the context of bioremediation, agriculture as well as <a href="got.html#eclss">environmental-controll and life-support-systems(ECLSS) especially Bioregenerative Life-support-systems</a>.
+            </p>
+            <img src="images/subsystem graph.png" style="float:right; width:25vw" id="subs">
+            <p>
+                Our current conception of the Shepherdess is as a semi-supervised machine learning system that seeks to integrate a number of automation and bio/machine interfacing systems, such as the ones listed below.
+            </p>
+            <ul>
+                <li>Natural language processing</li>
+                <li>Electro-chemical Soil-behavior interfacing</li>
+                <li>Environmental Analysis and Controls Automation</li>
+                <li>Materials Input and Output Modeling</li>
+                <li>Eco-Agro-forestry Planning</li>
+                <li>Animal Husbandry Automation</li>
+            </ul>
+            <h2>Why?</h2>
+            <h3>The rise of AGI as a tool for dominance</h3>
+            <p>
+                We are very quickly heading to a technological revolution where major global conflicts and dominance of states and even our species is going to be challenged by the emergence of true strong artificial intelligence. AGI brought into being in the context of domination and conflict will serve to more deeply entrench global national capitalist conflict and drive our world closer to ultimatly becoming unsuited for human life. Bringing an AGI into existance in the context of nurturing and protecting ecological capital could help to heal the global communities pathological addiction to financial capital systems and inter-national conflict.
+            </p>
+            <h3>Anthropogenic climate change</h3>
+            <p>
+                Rapid climate change due to the over indulgence of consumer industry, destruction of ecological capital and general miss management of resources is hurling our biosphere towards a profound systems phase shift that will likely not include the vast majority of life that exists on the planet today. The only reasonable way to prevent this outcome is to radicaly shift the global economy from consumer goods production within the context of financial markets to one where ecological capital is nurtured to the point where its excess can sustainably support the human population.
+            </p>
+            <h3>Expansion of human culture beyond earth</h3>
+            <p>It is the opinion of project shepherdess that any serious presence of humans beyond earth will involve the need for development of socio-ecological life-support systems, a form of bio-regenerative life support system where the daily activities of the humans within a closed space nurture abundance through the careful tending of ecological capital under the guidance of shepherdess. This is a situation not unlike how we existed on earth and did long before the development of the civilised mode of existance that dominates the planet today, only within much more tenuous circumstances requiring the assistance of Artificial intelegence.</p>
+            <h2>How?</h2>
+            <p>
+                In the initial phase of this project we are developing a suit of simpler ANN based automation systems for agricultural automation and environmental monitoring/control that will provide the basis for nurturing the shepherdess into existence. 
+            </p>
+            <p>
+                <!-- <script src="/test/beta2/sketch.js"></script> -->
+            </p>
+            <h2>Who?</h2>
+            <p>
+                We are currently building an international and interdisciplinary team of systems theorists, scientists and technologists with the skills and forward thinking capacity to address how we might bring about the shepherdess.
+            </p>
+        </article>
+        <br>
+        <br>
+        <br>
+        <footer id="footer">
+            <small>&copy; Copyright 2021, shepherdess.io <a href="https://astroekistics.com" target="_blank">In partnership with the Institute Of Astro-Ekistics  </a></small><img src="images/DHBB b small.png" alt="Demolish the house, build a boat!" height="8">
+        </footer>
+
+        <script>
+            function nightMode() {
+                var body = document.body;
+                var footer = document.getElementById("footer")
+                var nav = document.getElementById("myHeader");
+                var banner = document.getElementById("psbanner");
+                var logo = document.getElementById("pslogo");
+                var subs = document.getElementById("subs");
+                body.classList.toggle("nightmode");
+                nav.classList.toggle("invert");
+                footer.classList.toggle("invert");
+                banner.classList.toggle("invert");
+                subs.classList.toggle("invert");
+            }
+        </script>
+        <script src="/test/beta2/p5.js"></script>    
+        <script src="/test/beta2/field.js"></script>
+        <script src="/test/beta2/sheep.js"></script>
+        <script src="/test/beta2/shepherdess.js"></script>
+
+    </body>
+</html>

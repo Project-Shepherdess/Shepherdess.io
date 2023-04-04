@@ -1,0 +1,106 @@
+
+body {
+    background-color: white;
+    color: black;
+    text-align: center;
+}
+
+.nightmode {
+    background-color: black;
+    color: white;
+}
+
+.invert {
+    filter: invert(1)
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    color: black;
+    align-content: center;
+    text-align: center;
+    /* width: 100% */
+    z-index:5;
+    box-shadow: 0px 5px 15px 5px black;
+}
+
+header {
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    color: black;
+    align-content: center;
+    text-align: left;
+    /* width: 100% */
+    z-index:5;    
+}
+
+article {
+    padding-top: 5vw;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+    article > h1 {
+        text-align: center;
+    }
+
+    article > figure {
+        text-align: center;
+    }
+
+    article > q {
+        text-align: center;
+    }
+
+/* footer {
+    color: white;
+} */
+
+iframe {
+    margin: 15px;
+}
+
+table {
+    width: 100%;
+}
+
+#psbanner {
+    margin-top: 6vw;
+    max-width: 98vw;
+    z-index:-1;
+}
+
+#pslogo {
+    height: 5vw;
+}
+
+.column {
+    vertical-align: middle; 
+    float: left;
+    width: 33.33%;
+}
+
+.menucolumn {
+    text-align: ;
+    float: left;
+    width: 20%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

@@ -1,0 +1,362 @@
+//Sheep object array
+var sheepPop = []
+
+//sheep object population initialization
+function newSheepPop(x, y, h, s) {
+    let spread = 100
+    for (let i = 0; i < h; i++) {
+        // sheepPop.push(new Sheep(random(x- width/spread, x+ width/spread), random(y- height/spread, y+ height/spread),s,i))
+        // sheepPop.push(new Sheep(0,0,s,i))
+        // sheepPop.push(new Sheep(width/2,height/2,s,i))
+        sheepPop.push(new Sheep(random(border, width - border), random(border, height - border), s, i))
+    }
+}
+
+//test sheep intialization
+function testSheep(x, y, h, s) {
+    sheepPop.push(new Sheep(random(border, width - border), random(border, height - border), s, 0))
+}
+
+//Sheep object population is function
+function sheepPopIs() {
+    for (let sheep of sheepPop) {
+        sheep.is()
+    }
+}
+
+//Sheep object
+class Sheep {
+    constructor(x, y, r, s, t = false) {
+        this.test = t
+
+        if (!this.test) {
+
+            //Physics
+
+            //active Physics
+            this.vel = createVector(0, 0)
+            this.orientation = this.vel.heading()
+            this.wonderNoiseCount = noiseSeed()
+
+            //passive Physics
+            this.pos = createVector(x, y)
+            this.size = r * 2
+        
+            this.maxSpeed = 1
+            this.maxSight = (this.size * 5) * .5 //~20 feet with an average sheep size of 1.3 meters * .5
+
+            this.maxSmell = Infinity
+            this.scent = this.pos
+        
+            this.minReach = r
+            this.maxReach = this.size
+            this.cRate = .05
+            this.maxC = 0
+        
+            this.color = random(100, 200)
+            
+            //Flags
+            this.grazing = false
+            this.moving = false
+
+            //knowledge
+            this.neighborsScent = []
+            this.nearestNeighborScentLocation = createVector(x, y)
+            this.nearestNeighborScentDistance = 0
+            this.neighborsScentroid = this.pos
+
+            this.neighbors = []
+            this.nearestNeighborLocation = createVector(x, y)
+            this.nearestNeighborDistance = 0
+            this.neighborsCentroid = this.pos
+
+            this.food = []
+            this.foodGrades = [1, .7, .4, .1]
+
+            this.nearestFood = 0
+            this.nearestFoodLocation = createVector(x, y)
+            this.nearestFoodDistance = 0
+        
+            //Mood
+            this.secure = true
+        } else {
+
+        }
+            
+            
+    }
+
+    is() {
+        if (!this.test) {
+            this.update()
+            this.form()
+        } else {
+
+        }
+    }
+
+    update() {
+        if (!this.test) {
+            this.knowledge()
+            this.mood()
+            this.behavior()
+            this.flags()
+            this.physics()
+        } else {
+
+        }
+    }
+
+    knowledge() {
+        if (!this.moving && !this.grazing) {
+            this.senseFood()
+            this.senseSheep()
+        }
+    }
+
+    mood() {
+
+        //is the sheep secure
+        if (this.neighbors == 0) {
+            // console.log("yikes im alone")
+            this.secure = false
+        } else if (this.nearestNeighborScentDistance < this.maxSight * .5) {
+            this.secure = true
+        }
+        else if (this.nearestNeighborDistance > this.maxSight * .9) {
+            // console.log("yikes im lonely")
+            this.secure = false
+        } else if (this.nearestNeighborDistance < this.maxSight * .5) {
+            this.secure = true
+        }
+
+        // is(this.neighbors.length == 0){
+        //     this.alone
+        // }
+
+
+    }
+
+    behavior() {
+        // console.log(this.secure)
+        if (!this.secure) {
+            this.herd()
+        } else {
+            this.graze()
+        }
+        // this.graze()
+    }
+
+    flags() {
+        // movement
+        if (this.vel.mag() == 0) {
+            this.moving = false
+        } else {
+            this.moving = true
+        }
+    }
+
+    physics() {
+        //movemnet
+        this.pos.add(this.vel)
+
+        // fence
+        let boundryBuff = ts / 2
+        let fenceX = 0 + border
+        let fenceY = 0 + border + ts / 4
+        let fenceWidth = width - border
+        let fenceHeight = height - border - ts / 2
+
+        if (this.pos.x >= fenceWidth - boundryBuff) {
+            this.pos.x = this.pos.x - 1
+        }
+        if (this.pos.y >= fenceHeight - boundryBuff) {
+            this.pos.y = this.pos.y - 1
+        }
+        if (this.pos.x <= fenceX + boundryBuff) {
+            this.pos.x = this.pos.x + 1
+        }
+        if (this.pos.y <= 0 + fenceY + boundryBuff) {
+            this.pos.y = this.pos.y + 1
+        }
+    }
+
+    form() {
+        noStroke();
+        fill(this.color);
+        ellipse(this.pos.x, this.pos.y, this.size)
+        push();
+        translate(this.pos.x, this.pos.y);
+        rotate(this.orientation)
+        triangle(-this.size, -this.size / 2, -this.size, this.size / 2, this.size, 0)
+        pop()
+    }
+
+    seek(target) {
+        let d = this.pos.dist(target)
+        if (d >= this.maxReach) {
+            let direction = p5.Vector.sub(target, this.pos);
+            direction.setMag(this.maxSpeed);
+            this.vel = direction
+        } else {
+            this.vel.setMag(0)
+        }
+        this.face(target)
+    }
+
+    wonder() {
+
+        this.seek(createVector(this.pos.x + random(-20, 20), this.pos.y + random(-20, 20)))
+
+        // let d = this.pos.dist(target)
+        // if (d >= this.maxReach) {
+        //     let direction = p5.Vector.sub(p5.Vector.add(this.pos,createVector(noise(noiseSeed),noise(noiseSeed))), this.pos);
+        //     this.seek(direction)
+        // } else {
+        //     this.vel.setMag(0)
+        // }
+        // // this.face(target)
+
+
+        // // let direction = p5.Vector.sub(this.pos.add(), this.pos);
+        // // direction.setMag(this.maxSpeed/2);
+        // // this.vel = direction
+    }
+
+    evade(target) {
+        let d = p5.Vector.dist(target, this.pos)
+        let force = p5.Vector.sub(this.pos, target);
+        if (d > this.r) {
+            force.setMag(this.maxSpeed);
+            force.sub(this.vel);
+            this.applyForce(force);
+
+            // this.faceAway(target)
+            this.update()
+        }
+    }
+    face(target) {
+        let heading = p5.Vector.sub(target, this.pos);
+        this.orientation = heading.heading()
+    }
+    faceAway(target) {
+        let heading = p5.Vector.sub(this.pos, target);
+        this.facing = heading.heading()
+    }
+    senseFood() {
+
+        this.food.length = 0
+        for (let i = 0; i < field.length; i++) {
+            if (p5.Vector.dist(field[i].pos, this.pos) <= this.maxSight) {
+                this.food.push(i)
+            }
+        }
+
+
+        let gradeA = []
+        let gradeB = []
+        let gradeC = []
+        let nearestFieldRunner = Infinity;
+        let nearestFoodTemp = false
+
+
+
+        for (let member of this.food) {
+            if (field[member].growth >= this.foodGrades[0]) {
+                gradeA.push(member)
+            } else if (field[member].growth >= this.foodGrades[1]) {
+                gradeB.push(member)
+            } else if (field[member].growth >= this.foodGrades[2]) {
+                gradeC.push(member)
+            }
+        }
+        
+
+        if (gradeA.length > 0) {
+            this.maxC = this.foodGrades[0 + 1]
+            for (let n of gradeA) {
+                let d = p5.Vector.dist(field[n].pos, this.pos)
+                if (d < nearestFieldRunner) {
+                    // update the nearest field tile
+                    nearestFoodTemp = n
+                    // update running closest
+                    nearestFieldRunner = d
+                }
+            }
+            // this.nearestGrass = prime[Math.floor(Math.random()*prime.length)]
+        } else if (gradeB.length > 0) {
+            this.maxC = this.foodGrades[1 + 1]
+            for (let n of gradeB) {
+                let d = p5.Vector.dist(field[n].pos, this.pos)
+                if (d < nearestFieldRunner) {
+                    // update the nearest field tile
+                    nearestFoodTemp = n
+                    // update running closest
+                    nearestFieldRunner = d
+                }
+            }
+            // this.nearestGrass = subPrime[Math.floor(Math.random()*subPrime.length)]
+        } else if (gradeC.length > 0) {
+            this.maxC = this.foodGrades[2 + 1]
+            for (let n of gradeC) {
+                let d = p5.Vector.dist(field[n].pos, this.pos)
+                if (d < nearestFieldRunner) {
+                    // update the nearest field tile
+                    nearestFoodTemp = n
+                    // update running closest
+                    nearestFieldRunner = d
+                }
+            }
+        }
+        this.nearestFood = nearestFoodTemp
+        if (this.nearestFood != false) {
+        this.nearestFoodLocation = field[this.nearestFood].pos
+        this.nearestFoodDistance = p5.Vector.dist(this.nearestFoodLocation, this.pos)
+    }
+    }
+    senseSheep() {
+
+        // reset and populate neghbors
+        this.neighbors.length = 0
+        this.neighborsScent.length = 0
+        for (let i = 0; i < sheepPop.length; i++) {
+            let distance = p5.Vector.dist(sheepPop[i].pos, this.pos)
+            if (distance > 0 && distance <= this.maxSight) {
+                this.neighbors.push(sheepPop[i].pos)
+            }
+            if (distance > 0 && distance <= this.maxSmell) {
+                this.neighborsScent.push(sheepPop[i].pos)
+            }
+        }
+        
+
+        if (this.neighbors.length > 0) {
+            //find nearest neighbor, there distance and location
+            // let nnDistanceRunner = Infinity
+            this.nearestNeighborDistance = Infinity
+            let centroid = createVector(0, 0)
+            for (let sheep of this.neighbors) {
+                let d = p5.Vector.dist(sheep, this.pos)
+                if (d < this.nearestNeighborDistance) {
+                    this.nearestNeighboLocation = sheep
+                    this.nearestNeighborDistance = d
+                }
+                centroid.add(sheep)
+            }
+            this.neighborsCentroid = centroid.div(this.neighbors.length)
+        } else if (this.neighborsScent.length > 0) {
+            // let nsDistanceRunner = Infinity
+            this.nearestNeighborScentDistance = Infinity
+            let scentroid = createVector(0, 0)
+            for (let smell of this.neighborsScent) {
+                let d = p5.Vector.dist(smell, this.pos)
+                if (d < this.nearestNeighborScentDistance) {
+                    this.nearestNeighborScentLocation = smell
+                    this.nearestNeighborScentDistance = d
+                }
+                scentroid.add(smell)
+            }
+            this.neighborsCentroid = scentroid.div(this.neighborsScent.length)
+        }
+    }
+}

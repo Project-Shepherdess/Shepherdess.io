@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-16">
+
+    <title>Project Shepherdess: Glossary of Terms</title>
+    <link rel="stylesheet" href="stylesheets/index.css">
+    <link rel="icon" href="favcon.png" type="image/png" sizes="32x32">
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+    <link rel="apple-touch-icon" href="favicon.png">
+</head>
+
+<body>
+    <!-- floating navigation bar -->
+    <nav class="header" id="myHeader">
+        <table>
+            <td><a href="http://shepherdess.io"><img id="pslogo" src="images/projectsheppherdess.png"></td></a>
+            <td><a href="index.html#about">ABOUT</a></td>
+            <td><a href="got.html">Glossary of Terms</a></td>
+            <td><button onclick="nightMode()">🌙</button></td>
+        </table>
+    </nav>
+    <!-- sheppherdess image -->
+    <!-- <img src="images/SIOBanner.png" href="shepherdess.io" id="psbanner" class="content"> -->
+
+    <!-- articles -->
+    <article id=AGI>
+    <h1>Glossary Of Terms</h1>
+    <h2>A.G.I. / Artilect</h2>
+    <p>
+        An artilect or an artificial general intelegence is in no uncertain terms a true intelegence or conciousness
+        that is emergent from human constructed technology.
+    </p>
+    <iframe src="https://en.wikipedia.org/wiki/Artificial_general_intelligence" title="A.G.I/Artilect" width="100%"
+        height="300">
+        <p>Your browser does not support iframes.</p>
+    </iframe>
+    </article>
+    <article id=eclss>
+    <h2>Environmental-controll and life-support-systems (ECLSS)</h2>
+    <p>
+        <q>A life-support system is the combination of equipment that allows survival in an environment or situation
+            that would not
+            support that life in its absence. It is generally applied to systems supporting human life in situations
+            where the
+            outside environment is hostile, such as in space or underwater, or medical situations where the health
+            of the person is
+            compromised to the extent that the risk of death would be high without the function of the
+            equipment.</q>
+        - en.wikipedia.org/wiki/Life-support_system
+    </p>
+    <iframe src="https://en.wikipedia.org/wiki/Life-support_system"
+        title="environmental-controll and life-support-systems(ECLSS)" width="100%" height="300">
+        <p>Your browser does not support iframes.</p>
+    </iframe>
+    <br>
+    <iframe src="https://en.wikipedia.org/wiki/Bioregenerative_life_support_system"
+        title="Bioregenerative life-support-systems(BLSS)" width="100%" height="300">
+        <p>Your browser does not support iframes.</p>
+    </iframe>
+    </article>
+    <article id=ecoasc>
+    <h2>Ecological Ascendancy</h2>
+    <p>
+        A representation of ecosystem health and resiliance against rapid change in the environment, ascendancy is
+        measured in
+        the amount of energy and biomass in flux throughout the given ecosystem.
+    </p>
+    <iframe src="https://en.wikipedia.org/wiki/Ascendency" title="Ecological Ascendancy" width="100%" height="300">
+        <p>Your browser does not support iframes.</p>
+    </iframe>
+    </article>
+    <article id=ecocap>
+    <h2>Ecological Capital</h2>
+    <p><q>
+            ecological-capital assets are defined in keeping with economic and accounting convention as classes of
+            durable
+            nonfinancial asset that are used to produce future benefits. Ecological-capital assets are then the
+            principal stock
+            of ecosystem components that provide a flow of goods and services that provide public benefits or that
+            can be
+            transformed into goods and services for trade in markets.</q>
+        - Accounting for Ecological Capital: Susan Ogilvy, Robert Costanza
+    </p>
+    <p>
+        Put simply ecological capital is that part of natural capital that can be catagorised as a function of an
+        ecological or bio-geo-chemical system
+    </p>
+    <iframe src="https://en.wikipedia.org/wiki/Natural_capital" title="Ecological Capital" width="100%"
+        height="300">
+        <p>Your browser does not support iframes.</p>
+    </iframe>
+    <br>
+    <iframe src="https://en.wikipedia.org/wiki/Biogeochemical_cycle" title="Bio-Geo-Chemical Systems" width="100%"
+        height="300">
+        <p>Your browser does not support iframes.</p>
+    </iframe>
+    </article>
+    <br>
+    <br>
+    <br>
+    <footer id="footer">
+        <small>&copy; Copyright 2021, shepherdess.io <a href="https://astroekistics.com" target="_blank">In partnership
+                with the Institute Of Astro-Ekistics </a></small><img src="images/DHBB b small.png"
+            alt="Demolish the house, build a boat!" height="8">
+    </footer>
+
+    <script>
+        function nightMode() {
+            var body = document.body;
+            var footer = document.getElementById("footer")
+            var nav = document.getElementById("myHeader");
+            var banner = document.getElementById("psbanner");
+            var logo = document.getElementById("pslogo");
+            body.classList.toggle("nightmode");
+            nav.classList.toggle("invert")
+            footer.classList.toggle("invert")
+            banner.classList.toggle("invert");
+        }
+    </script>
+</body>
+
+</html>
