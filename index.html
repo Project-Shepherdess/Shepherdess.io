@@ -1,118 +1,92 @@
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-16">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Project Shepherdess - Coming Soon</title>
+    <meta name="description" content="A.G.I. in the context of ecological stewardship and human abundance.">
+    <link rel="canonical" href="https://shepherdess.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shepherdess.io/">
+    <meta property="og:title" content="Project Shepherdess - Coming Soon">
+    <meta property="og:description" content="A.G.I. in the context of ecological stewardship and human abundance.">
+    <meta property="og:image" content="https://shepherdess.io/images/SIOLogo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Project Shepherdess - Coming Soon">
+    <meta name="twitter:description" content="A.G.I. in the context of ecological stewardship and human abundance.">
+    <meta name="twitter:image" content="https://shepherdess.io/images/SIOLogo.png">
+    <meta name="theme-color" content="#05070b">
+    <link rel="icon" href="favcon.png" type="image/png" sizes="32x32">
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #05070b;
+        --fg: #f4f7fb;
+        --muted: rgba(244, 247, 251, 0.72);
+      }
 
-        <title>Project Shepherdess</title>
-        <link rel="stylesheet" href="stylesheets/index.css">
-        <link rel="icon" href="favcon.png" type="image/png" sizes="32x32">
-        <link rel="shortcut icon" type="image/png" href="favicon.png" />
-        <link rel="apple-touch-icon" href="favicon.png">
-    </head>
-    <body>
-        <!-- floating navigation bar -->
-        <nav class="header" id="myHeader">
-            <table>
-                <td><a href="http://shepherdess.io"><img id="pslogo" src="images/projectsheppherdess.png"></td></a>
-                <td><a href="#about">ABOUT</a></td>
-                <td><button onclick="nightMode()">🌙</button></td>
-            </table>
-        </nav>
-        <!-- sheppherdess image -->
-        <img src="images/SIOBanner.png" href="shepherdess.io" id="psbanner" class="content" style="padding-top: 5vh;">
+      * {
+        box-sizing: border-box;
+      }
 
-        <!-- articles -->
-        <article id=about>
-            <h1>A.G.I. in the context of ecological stewardship and human abundance</h1>
-            <p>The goal of project sheperdess is the development of an AI system that managed livestock, plans and nurtures ecosystem development while mediating social and ecological needs into a single trajectory towards mutual abundance and a sustainable future.</p>
-            <p></p>
+      html,
+      body {
+        min-height: 100%;
+      }
 
-            <!-- <h2>Animal Husbandry Automation</h2>
-            <p>
-                
-            </p>
-            <h2>Eco-Agro-forestry Planning</h2>
-            <p>
-                
-            </p>
-            <h2>Environmental Analysis and Controls Automation</h2>
-            <p>
+      body {
+        align-items: center;
+        background: var(--bg);
+        color: var(--fg);
+        display: flex;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        justify-content: center;
+        margin: 0;
+        padding: max(2rem, env(safe-area-inset-top)) max(1.5rem, env(safe-area-inset-right)) max(2rem, env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left));
+      }
 
-            </p>
-            <h2>Materials Input and Output Modeling</h2>
-            <p>
+      main {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(1.1rem, 3vw, 1.75rem);
+        justify-content: center;
+        min-height: calc(100vh - 4rem);
+        text-align: center;
+        width: min(100%, 46rem);
+      }
 
-            </p>
-            <h2>Electro-chemical Soil-behavior interfacing</h2>
-            <p>
+      .logo {
+        filter: invert(1);
+        height: auto;
+        max-width: min(74vw, 24rem);
+        opacity: 0.96;
+        width: 24rem;
+      }
 
-            </p>
-            <h2>Natural language processing</h2>
-            <p>
+      h1 {
+        font-size: clamp(0.8rem, 1.6vw, 1rem);
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        line-height: 1.4;
+        margin: 0;
+        text-transform: uppercase;
+      }
 
-            </p> -->
-
-            <!-- <img src="images/subsystem graph.png" style="float:right; width:25vw; text-align: center;" id="subs"> -->
-
-
-
-            <!-- <p>
-                Our current conception of the Shepherdess is as a semi-supervised machine learning system that seeks to integrate a number of automation and bio/machine interfacing systems, such as the ones listed below.
-            </p> -->
-            <!-- <ul>
-                <li>Natural language processing</li>
-                <li>Electro-chemical Soil-behavior interfacing</li>
-                <li>Environmental Analysis and Controls Automation</li>
-                <li>Materials Input and Output Modeling</li>
-                <li>Eco-Agro-forestry Planning</li>
-                <li>Animal Husbandry Automation</li>
-            </ul> -->
-
-
-            <!-- <h2>Why?</h2>
-            <h3>The rise of AGI as a tool for dominance</h3>
-            <p>
-                We are very quickly heading to a technological revolution where major global conflicts and dominance of states and even our species is going to be challenged by the emergence of true strong artificial intelligence. AGI brought into being in the context of domination and conflict will serve to more deeply entrench global national capitalist conflict and drive our world closer to ultimatly becoming unsuited for human life. Bringing an AGI into existance in the context of nurturing and protecting ecological capital could help to heal the global communities pathological addiction to financial capital systems and inter-national conflict.
-            </p>
-            <h3>Anthropogenic climate change</h3>
-            <p>
-                Rapid climate change due to the over indulgence of consumer industry, destruction of ecological capital and general miss management of resources is hurling our biosphere towards a profound systems phase shift that will likely not include the vast majority of life that exists on the planet today. The only reasonable way to prevent this outcome is to radicaly shift the global economy from consumer goods production within the context of financial markets to one where ecological capital is nurtured to the point where its excess can sustainably support the human population.
-            </p>
-            <h3>Expansion of human culture beyond earth</h3>
-            <p>It is the opinion of project shepherdess that any serious presence of humans beyond earth will involve the need for development of socio-ecological life-support systems, a form of bio-regenerative life support system where the daily activities of the humans within a closed space nurture abundance through the careful tending of ecological capital under the guidance of shepherdess. This is a situation not unlike how we existed on earth and did long before the development of the civilised mode of existance that dominates the planet today, only within much more tenuous circumstances requiring the assistance of Artificial intelegence.</p>
-            <h2>How?</h2>
-            <p>
-                In the initial phase of this project we are developing a suit of simpler ANN based automation systems for agricultural automation and environmental monitoring/control that will provide the basis for nurturing the shepherdess into existence. 
-            </p> -->
-
-            <!-- <h2>Who?</h2>
-            <p>
-                We are currently building an international and interdisciplinary team of systems theorists, scientists and technologists with the skills and forward thinking capacity to address how we might bring about the shepherdess.
-            </p> -->
-
-
-        </article>
-
-        <script>
-            function nightMode() {
-                var body = document.body;
-                var footer = document.getElementById("footer")
-                var nav = document.getElementById("myHeader");
-                var banner = document.getElementById("psbanner");
-                var logo = document.getElementById("pslogo");
-                var subs = document.getElementById("subs");
-                body.classList.toggle("nightmode");
-                nav.classList.toggle("invert");
-                footer.classList.toggle("invert");
-                banner.classList.toggle("invert");
-                subs.classList.toggle("invert");
-            }
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script>
-        <script src="sketch.js"></script>
-        <script src="field.js"></script>
-        <!-- <script src="/test/beta3/sheep.js"></script> -->
-        <script src="shepherdess.js"></script>
-        <!-- <script src="/test/beta3/p5.js"></script>     -->
-    </body>
-
+      p {
+        color: var(--muted);
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        line-height: 1.45;
+        margin: 0;
+        max-width: 38rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img class="logo" src="images/SIOLogo.png" alt="Project Shepherdess logo">
+      <h1>Coming Soon</h1>
+      <p>A.G.I. in the context of ecological stewardship and human abundance</p>
+    </main>
+  </body>
 </html>
