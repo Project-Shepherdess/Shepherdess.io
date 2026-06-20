@@ -3,90 +3,849 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Project Shepherdess - Coming Soon</title>
-    <meta name="description" content="A.G.I. in the context of ecological stewardship and human abundance.">
+    <title>Shepherdess | Ecological AI for Productive Living Systems</title>
+    <meta name="description" content="Shepherdess is being grown as conversational ecological intelligence for productive living systems, with site memory, operational integrations, ecological outcome learning, and a domain-grounded AGI trajectory.">
     <link rel="canonical" href="https://shepherdess.io/">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://shepherdess.io/">
-    <meta property="og:title" content="Project Shepherdess - Coming Soon">
-    <meta property="og:description" content="A.G.I. in the context of ecological stewardship and human abundance.">
-    <meta property="og:image" content="https://shepherdess.io/images/SIOLogo.png">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Project Shepherdess - Coming Soon">
-    <meta name="twitter:description" content="A.G.I. in the context of ecological stewardship and human abundance.">
-    <meta name="twitter:image" content="https://shepherdess.io/images/SIOLogo.png">
-    <meta name="theme-color" content="#05070b">
+    <meta property="og:title" content="Shepherdess | Ecological AI for Productive Living Systems">
+    <meta property="og:description" content="Conversational ecological intelligence for productive living systems, site memory, operational integrations, and ecological outcome learning.">
+    <meta property="og:image" content="https://shepherdess.io/images/image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Shepherdess | Ecological AI for Productive Living Systems">
+    <meta name="twitter:description" content="Conversational ecological intelligence for productive living systems, site memory, operational integrations, and ecological outcome learning.">
+    <meta name="twitter:image" content="https://shepherdess.io/images/image.png">
+    <meta name="theme-color" content="#0c1512">
     <link rel="icon" href="favcon.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="images/SIOLogo.png">
     <style>
       :root {
-        color-scheme: dark;
-        --bg: #05070b;
-        --fg: #f4f7fb;
-        --muted: rgba(244, 247, 251, 0.72);
+        color-scheme: light;
+        --ink: #15211d;
+        --muted: #58645f;
+        --paper: #f7f5ef;
+        --panel: #ffffff;
+        --line: rgba(21, 33, 29, 0.14);
+        --forest: #173f33;
+        --moss: #5d7f43;
+        --teal: #247174;
+        --clay: #b76d3d;
+        --night: #0c1512;
+        --radius: 8px;
       }
 
       * {
         box-sizing: border-box;
       }
 
-      html,
-      body {
-        min-height: 100%;
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
-        align-items: center;
-        background: var(--bg);
-        color: var(--fg);
-        display: flex;
+        background: var(--paper);
+        color: var(--ink);
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        justify-content: center;
         margin: 0;
-        padding: max(2rem, env(safe-area-inset-top)) max(1.5rem, env(safe-area-inset-right)) max(2rem, env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left));
+        min-width: 320px;
       }
 
-      main {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        gap: clamp(1.1rem, 3vw, 1.75rem);
-        justify-content: center;
-        min-height: calc(100vh - 4rem);
-        text-align: center;
-        width: min(100%, 46rem);
+      a {
+        color: inherit;
+        text-decoration: none;
       }
 
-      .logo {
-        filter: invert(1);
-        height: auto;
-        max-width: min(74vw, 24rem);
-        opacity: 0.96;
-        width: 24rem;
-      }
-
-      h1 {
-        font-size: clamp(0.8rem, 1.6vw, 1rem);
-        font-weight: 700;
-        letter-spacing: 0.28em;
-        line-height: 1.4;
-        margin: 0;
-        text-transform: uppercase;
+      p,
+      li {
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.65;
       }
 
       p {
-        color: var(--muted);
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        line-height: 1.45;
         margin: 0;
-        max-width: 38rem;
+      }
+
+      .site-nav {
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        left: 0;
+        padding: 1rem clamp(1rem, 4vw, 3rem);
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 5;
+      }
+
+      .brand {
+        align-items: center;
+        color: #fff;
+        display: inline-flex;
+        font-size: 0.82rem;
+        font-weight: 800;
+        gap: 0.65rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .brand-mark {
+        aspect-ratio: 1;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 50%;
+        display: inline-grid;
+        height: 2.15rem;
+        overflow: hidden;
+        place-items: center;
+        width: 2.15rem;
+      }
+
+      .brand-mark img {
+        filter: invert(1);
+        height: 1.7rem;
+        object-fit: contain;
+        opacity: 0.95;
+        width: 1.7rem;
+      }
+
+      .nav-links {
+        align-items: center;
+        display: flex;
+        gap: clamp(0.75rem, 2vw, 1.5rem);
+      }
+
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.86rem;
+        font-weight: 650;
+      }
+
+      .hero {
+        background-image: linear-gradient(rgba(8, 20, 16, 0.5), rgba(8, 20, 16, 0.68)), url("images/image.png");
+        background-position: center;
+        background-size: cover;
+        color: #fff;
+        min-height: min(760px, 92vh);
+        padding: clamp(6.5rem, 12vw, 9rem) clamp(1rem, 4vw, 3rem) clamp(3rem, 8vw, 5rem);
+        position: relative;
+      }
+
+      .hero-inner {
+        max-width: 72rem;
+      }
+
+      .hero-brand {
+        align-items: center;
+        display: inline-flex;
+        gap: 0.7rem;
+        margin-bottom: 1.6rem;
+      }
+
+      .hero-brand img {
+        filter: invert(1);
+        height: 3.3rem;
+        object-fit: contain;
+        opacity: 0.86;
+        width: 3.3rem;
+      }
+
+      .hero-brand span {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .stage-pill {
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.34);
+        border-radius: var(--radius);
+        color: rgba(255, 255, 255, 0.88);
+        display: inline-flex;
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        margin-bottom: 1rem;
+        padding: 0.55rem 0.7rem;
+        text-transform: uppercase;
+      }
+
+      .eyebrow {
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        margin: 0 0 1.25rem;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 8vw, 7.2rem);
+        letter-spacing: 0;
+        line-height: 0.94;
+        margin: 0;
+        max-width: 12ch;
+      }
+
+      .hero-copy {
+        color: rgba(255, 255, 255, 0.86);
+        font-size: clamp(1.05rem, 2vw, 1.35rem);
+        line-height: 1.55;
+        margin-top: 1.5rem;
+        max-width: 44rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        margin-top: 2rem;
+      }
+
+      .button {
+        align-items: center;
+        border: 1px solid transparent;
+        border-radius: var(--radius);
+        display: inline-flex;
+        font-size: 0.92rem;
+        font-weight: 800;
+        min-height: 2.85rem;
+        padding: 0.85rem 1.1rem;
+      }
+
+      .button.primary {
+        background: #fff;
+        color: var(--night);
+      }
+
+      .button.secondary {
+        border-color: rgba(255, 255, 255, 0.52);
+        color: #fff;
+      }
+
+      .hero-metrics {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: clamp(3rem, 9vw, 6rem);
+        max-width: 60rem;
+      }
+
+      .metric {
+        border-top: 1px solid rgba(255, 255, 255, 0.38);
+        min-height: 7rem;
+        padding-top: 1rem;
+      }
+
+      .metric strong {
+        display: block;
+        font-size: clamp(1.2rem, 2.8vw, 2rem);
+        line-height: 1.15;
+      }
+
+      .metric span {
+        color: rgba(255, 255, 255, 0.75);
+        display: block;
+        font-size: 0.92rem;
+        line-height: 1.45;
+        margin-top: 0.45rem;
+      }
+
+      main section {
+        padding: clamp(3.5rem, 8vw, 6rem) clamp(1rem, 4vw, 3rem);
+      }
+
+      .section-inner {
+        margin: 0 auto;
+        max-width: 74rem;
+      }
+
+      .section-kicker {
+        color: var(--teal);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.14em;
+        margin: 0 0 0.85rem;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 4.4vw, 4.2rem);
+        letter-spacing: 0;
+        line-height: 1.02;
+        margin: 0;
+        max-width: 13ch;
+      }
+
+      .lead {
+        color: #34413c;
+        font-size: clamp(1.05rem, 1.8vw, 1.24rem);
+        line-height: 1.62;
+        margin-top: 1.2rem;
+        max-width: 46rem;
+      }
+
+      .split {
+        align-items: start;
+        display: grid;
+        gap: clamp(2rem, 5vw, 4rem);
+        grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 1.1fr);
+      }
+
+      .problem-grid,
+      .intelligence-grid,
+      .audience-grid,
+      .finance-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 2rem;
+      }
+
+      .intelligence-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        min-height: 13rem;
+        padding: 1.25rem;
+      }
+
+      .card h3 {
+        font-size: 1.08rem;
+        line-height: 1.25;
+        margin: 0 0 0.75rem;
+      }
+
+      .card p {
+        font-size: 0.96rem;
+      }
+
+      .dark-band {
+        background: var(--night);
+        color: #fff;
+      }
+
+      .dark-band .section-kicker {
+        color: #8fd3c5;
+      }
+
+      .dark-band h2,
+      .dark-band h3,
+      .dark-band strong {
+        color: #fff;
+      }
+
+      .dark-band p,
+      .dark-band li {
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      .dark-band .card {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+
+      .loop {
+        display: grid;
+        gap: 0.8rem;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        margin-top: 2rem;
+      }
+
+      .loop-step {
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: var(--radius);
+        min-height: 8rem;
+        padding: 1rem;
+      }
+
+      .loop-step span {
+        color: #8fd3c5;
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 900;
+        margin-bottom: 0.5rem;
+      }
+
+      .loop-step strong {
+        display: block;
+        font-size: 1rem;
+      }
+
+      .ledger {
+        background: #eef3ec;
+      }
+
+      .ledger-panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        margin-top: 2rem;
+        overflow: hidden;
+      }
+
+      .ledger-row {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 11rem minmax(0, 1fr);
+        padding: 1.1rem 1.25rem;
+      }
+
+      .ledger-row + .ledger-row {
+        border-top: 1px solid var(--line);
+      }
+
+      .ledger-row strong {
+        color: var(--forest);
+      }
+
+      .method-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-top: 1.5rem;
+      }
+
+      .method-list span {
+        background: rgba(36, 113, 116, 0.1);
+        border: 1px solid rgba(36, 113, 116, 0.2);
+        border-radius: var(--radius);
+        color: #17494a;
+        font-size: 0.92rem;
+        font-weight: 750;
+        padding: 0.7rem 0.8rem;
+      }
+
+      .vision {
+        background: #fff;
+      }
+
+      .vision .section-inner {
+        border-left: 5px solid var(--clay);
+        padding-left: clamp(1rem, 3vw, 2rem);
+      }
+
+      .cta {
+        background: var(--forest);
+        color: #fff;
+      }
+
+      .cta-grid {
+        align-items: end;
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.45fr);
+      }
+
+      .cta h2 {
+        max-width: 14ch;
+      }
+
+      .cta p {
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .cta .button.secondary {
+        justify-content: center;
+        width: 100%;
+      }
+
+      footer {
+        background: #09110f;
+        color: rgba(255, 255, 255, 0.75);
+        padding: 1.5rem clamp(1rem, 4vw, 3rem);
+      }
+
+      .footer-inner {
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        margin: 0 auto;
+        max-width: 74rem;
+      }
+
+      footer strong {
+        color: #fff;
+      }
+
+      .footer-brand {
+        align-items: center;
+        display: inline-flex;
+        gap: 0.65rem;
+      }
+
+      .footer-brand img {
+        filter: invert(1);
+        height: 1.6rem;
+        object-fit: contain;
+        opacity: 0.82;
+        width: 1.6rem;
+      }
+
+      footer span {
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 1120px) {
+        .loop {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 880px) {
+        .site-nav {
+          align-items: flex-start;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        .hero-metrics,
+        .problem-grid,
+        .intelligence-grid,
+        .audience-grid,
+        .finance-grid,
+        .loop,
+        .split,
+        .cta-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .metric,
+        .card,
+        .loop-step {
+          min-height: auto;
+        }
+
+        .ledger-row {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 520px) {
+        h1 {
+          font-size: clamp(2.7rem, 16vw, 4rem);
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+
+        .button {
+          justify-content: center;
+          width: 100%;
+        }
       }
     </style>
   </head>
   <body>
+    <header class="hero">
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="brand" href="#">
+          <span class="brand-mark" aria-hidden="true"><img src="images/SIOLogo.png" alt=""></span>
+          <span>Shepherdess</span>
+        </a>
+        <div class="nav-links">
+          <a href="#intelligence">AI</a>
+          <a href="#system">System</a>
+          <a href="#mrv">MRV</a>
+          <a href="#markets">Markets</a>
+          <a href="#pilot">Pilot</a>
+        </div>
+      </nav>
+
+      <div class="hero-inner">
+        <div class="hero-brand" aria-hidden="true">
+          <img src="images/SIOLogo.png" alt="">
+          <span>Project Shepherdess</span>
+        </div>
+        <p class="stage-pill">Now forming pilot partnerships</p>
+        <p class="eyebrow">Conversational ecological intelligence</p>
+        <h1>Ecological AI for productive living systems.</h1>
+        <p class="hero-copy">Shepherdess is being grown as conversational ecological intelligence with a long-term trajectory toward domain-grounded AGI. Its role is to learn a place, connect with the tools that manage it, and help turn ecological understanding into abundance-building action.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#pilot">Join the pilot</a>
+          <a class="button secondary" href="#intelligence">See the AI thesis</a>
+        </div>
+
+        <div class="hero-metrics" aria-label="Shepherdess focus areas">
+          <div class="metric">
+            <strong>Proactive steward</strong>
+            <span>From first engagement, Shepherdess helps identify missing context, useful records, budgets, tools, and constraints.</span>
+          </div>
+          <div class="metric">
+            <strong>Productive ecology</strong>
+            <span>Food, fertility, shade, water retention, resilience, biodiversity, and productivity produced without degrading ecological capital.</span>
+          </div>
+          <div class="metric">
+            <strong>Field-grown intelligence</strong>
+            <span>Each site adds ecological memory from sensors, tools, actions, measurements, and adaptation.</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
     <main>
-      <img class="logo" src="images/SIOLogo.png" alt="Project Shepherdess logo">
-      <h1>Coming Soon</h1>
-      <p>A.G.I. in the context of ecological stewardship and human abundance</p>
+      <section>
+        <div class="section-inner split">
+          <div>
+            <p class="section-kicker">The problem</p>
+            <h2>Most land is managed below its productive potential.</h2>
+          </div>
+          <div>
+            <p class="lead">Gardens, lawns, farms, ranches, public landscapes, and corporate properties are often managed for appearance, compliance, or short-term output. The deeper opportunity is productive ecological abundance: food, fertility, water retention, biodiversity, shade, habitat, resilience, and long-term yield from systems that renew themselves.</p>
+          </div>
+        </div>
+
+        <div class="section-inner problem-grid">
+          <article class="card">
+            <h3>Ecological capital is hard to see</h3>
+            <p>Land can be gaining or losing fertility, water capacity, biodiversity, and resilience long before the change appears in financial records or production reports.</p>
+          </article>
+          <article class="card">
+            <h3>Production and ecology are split</h3>
+            <p>Food, fiber, livestock, soil, water, habitat, budgets, labor, and seasonal timing are usually planned in separate systems.</p>
+          </article>
+          <article class="card">
+            <h3>New markets need evidence</h3>
+            <p>Carbon, nature, resilience, supply-chain, and land-value funding depend on baselines, interventions, monitoring, and credible outcome records.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="intelligence">
+        <div class="section-inner split">
+          <div>
+            <p class="section-kicker">The AI thesis</p>
+            <h2>A conversational AI steward for living production.</h2>
+          </div>
+          <div>
+            <p class="lead">At the center of Shepherdess is an ecological intelligence that can be consulted in ordinary language and grounded in the facts of a place. It helps living systems become legible by actively building site context: land history, current conditions, available tools, budgets, constraints, opportunities, feedback, and change expressed in forms people can understand and act on.</p>
+          </div>
+        </div>
+
+        <div class="section-inner intelligence-grid">
+          <article class="card">
+            <h3>Ecological translation</h3>
+            <p>Shepherdess connects intent to place: what to plant, where water should move, when to graze, how to reduce inputs, and how to turn land into a productive living system.</p>
+          </article>
+          <article class="card">
+            <h3>Site discovery</h3>
+            <p>From the first engagement, Shepherdess identifies missing information, guides the search for useful records, and develops a working picture of the land's history and present condition.</p>
+          </article>
+          <article class="card">
+            <h3>Ecological memory</h3>
+            <p>Every site accumulates maps, photos, observations, management actions, seasonal context, and measured changes in living systems.</p>
+          </article>
+          <article class="card">
+            <h3>Operational integration</h3>
+            <p>Soil monitors, weather stations, cameras, irrigation, water controls, equipment records, and agricultural systems become part of the intelligence loop.</p>
+          </article>
+          <article class="card">
+            <h3>Action-outcome learning</h3>
+            <p>Shepherdess grows from the loop between recommendation, intervention, result, and adaptation, not from abstract text alone.</p>
+          </article>
+          <article class="card">
+            <h3>Domain-grounded AGI</h3>
+            <p>The long-term aim is AGI grounded in ecological production: intelligence shaped by repeated cycles of sensing, acting, measuring, and improving in the physical world.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="dark-band" id="system">
+        <div class="section-inner split">
+          <div>
+            <p class="section-kicker">How it works</p>
+            <h2>Conversation backed by site memory and operations.</h2>
+          </div>
+          <div>
+            <p class="lead">The goal is to make ecological production an intelligent, measurable, compounding process through an AI relationship with the land. Supporting platform surfaces can organize maps, tasks, records, evidence, budgets, and connected tools while Shepherdess remains the primary interface for planning, action, and learning as the site changes.</p>
+          </div>
+        </div>
+
+        <div class="section-inner loop" aria-label="Shepherdess management loop">
+          <div class="loop-step">
+            <span>01</span>
+            <strong>Discover</strong>
+            <p>Gather goals, constraints, budgets, site records, ownership history, production history, tools, and ecological ambitions.</p>
+          </div>
+          <div class="loop-step">
+            <span>02</span>
+            <strong>Remember</strong>
+            <p>Integrate maps, photos, observations, sensors, management history, prior outcomes, and missing-information requests into site memory.</p>
+          </div>
+          <div class="loop-step">
+            <span>03</span>
+            <strong>Connect</strong>
+            <p>Link soil monitoring, weather, cameras, irrigation, watering systems, equipment records, and agricultural technology into the operating layer.</p>
+          </div>
+          <div class="loop-step">
+            <span>04</span>
+            <strong>Act</strong>
+            <p>Turn conversation into budget-aware planting, water, soil, habitat, animal, food, fiber, and seasonal production actions across people and tools.</p>
+          </div>
+          <div class="loop-step">
+            <span>05</span>
+            <strong>Learn</strong>
+            <p>Integrate outcomes with the baseline, adapt as ecological complexity changes, and project how increased abundance can expand future options.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="ledger" id="mrv">
+        <div class="section-inner split">
+          <div>
+            <p class="section-kicker">Ecological MRV</p>
+            <h2>Make ecological improvement visible and financeable.</h2>
+          </div>
+          <div>
+            <p class="lead">The largest bottleneck in ecological finance is not lack of intent. It is qualifying, quantifying, supervising, and proving that production is increasing ecological capital rather than consuming it. Shepherdess is intended to grow the long-term record behind financeable ecological health.</p>
+          </div>
+        </div>
+
+        <div class="section-inner ledger-panel">
+          <div class="ledger-row">
+            <strong>Baseline</strong>
+            <p>Map the current state of soil, cover, canopy, water behavior, habitat, inputs, productivity, and management history.</p>
+          </div>
+          <div class="ledger-row">
+            <strong>Interventions</strong>
+            <p>Track what changed: plantings, grazing patterns, water systems, soil practices, biomass cycling, restoration work, and maintenance shifts.</p>
+          </div>
+          <div class="ledger-row">
+            <strong>Outcomes</strong>
+            <p>Measure food, fiber, carbon, biodiversity, water retention, resilience, productivity, reduced input dependency, and ecological systems complexity.</p>
+          </div>
+          <div class="ledger-row">
+            <strong>Finance</strong>
+            <p>Prepare evidence for carbon MRV, nature credits, green infrastructure, resilience funding, supply-chain premiums, productive landscape finance, and land-value reporting.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-inner split">
+          <div>
+            <p class="section-kicker">Methods</p>
+            <h2>Methods are management tools, not ideology.</h2>
+          </div>
+          <div>
+            <p class="lead">Shepherdess draws from practical ecological schools and evaluates them against site outcomes. The question is always what increases useful living complexity in this place, under these conditions, over time.</p>
+            <div class="method-list" aria-label="Ecological method library">
+              <span>Permaculture</span>
+              <span>Syntropic agriculture</span>
+              <span>Agroecology</span>
+              <span>Soil health</span>
+              <span>Agroforestry</span>
+              <span>Restoration ecology</span>
+              <span>Holistic planned grazing</span>
+              <span>Animal-integrated systems</span>
+              <span>Water harvesting</span>
+              <span>Green infrastructure</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="dark-band" id="markets">
+        <div class="section-inner split">
+          <div>
+            <p class="section-kicker">Markets</p>
+            <h2>Where ecological industry becomes an investable category.</h2>
+          </div>
+          <div>
+            <p class="lead">Shepherdess enters through land management and is positioned to grow into a measurement layer for ecological production. Carbon is one doorway. The larger opportunity is non-extractive ecological industry made legible across food, water, biodiversity, resilience, supply-chain, and land-value channels.</p>
+          </div>
+        </div>
+
+        <div class="section-inner finance-grid">
+          <article class="card">
+            <h3>Carbon and nature finance</h3>
+            <p>Baseline records, interventions, permanence evidence, biodiversity metrics, and outcome history for carbon, nature, and ecological dividend pathways.</p>
+          </article>
+          <article class="card">
+            <h3>Institutional land portfolios</h3>
+            <p>Campuses, municipalities, utilities, and corporate landholders need measurable improvements in water, heat, habitat, food production, maintenance, and resilience.</p>
+          </article>
+          <article class="card">
+            <h3>Regenerative supply chains</h3>
+            <p>Farms, ranches, timber, food, fiber, and livestock systems need credible records proving that production is building the ecological base it depends on.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-inner split">
+          <div>
+            <p class="section-kicker">Who it serves</p>
+            <h2>From home foodsheds to working landscapes.</h2>
+          </div>
+          <div>
+            <p class="lead">The same core intelligence can serve personal land, professional land care, production landscapes, and institutional properties because each begins with the same question: how does this living system produce more while becoming more alive over time?</p>
+          </div>
+        </div>
+
+        <div class="section-inner audience-grid">
+          <article class="card">
+            <h3>Personal land</h3>
+            <p>Homeowners, gardeners, homesteaders, and lawn conversion projects cultivating food, shade, beauty, pollinators, and lower-input abundance close to home.</p>
+          </article>
+          <article class="card">
+            <h3>Working land</h3>
+            <p>Farms, ranches, orchards, grasslands, poultry systems, aquaculture, forest-edge systems, and ecological producers managing soil, water, forage, animals, food, fiber, and productivity together.</p>
+          </article>
+          <article class="card">
+            <h3>Managed portfolios</h3>
+            <p>Campuses, parks, municipalities, corporate landholders, utilities, restoration projects, estuaries, and sustainability teams turning land and water systems into living assets.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="vision">
+        <div class="section-inner">
+          <p class="section-kicker">The larger vision</p>
+          <h2>From ecological production to domain-grounded AGI.</h2>
+          <p class="lead">Shepherdess begins with the land and water systems people already manage. Its larger technical trajectory points toward domain-grounded AGI grown through ecological production at scale: living feedback, site memory, action, adaptation, cross-site learning, and continuity. The path to intelligence is the work itself.</p>
+        </div>
+      </section>
+
+      <section class="cta" id="pilot">
+        <div class="section-inner cta-grid">
+          <div>
+            <p class="section-kicker">Pilot and partnership</p>
+            <h2>Help grow the first Shepherdess sites.</h2>
+            <p class="lead">We are seeking pilot partners across personal land, farms, ranches, ecological land practice, institutions, funders, and strategic partners interested in productive living systems.</p>
+          </div>
+          <div>
+            <a class="button secondary" href="mailto:info@shepherdess.io?subject=Shepherdess%20pilot%20interest">Pilot inquiries</a>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer>
+      <div class="footer-inner">
+        <strong class="footer-brand"><img src="images/SIOLogo.png" alt="">Shepherdess</strong>
+        <span>Ecological intelligence for productive living systems.</span>
+      </div>
+    </footer>
   </body>
 </html>
