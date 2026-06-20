@@ -48,6 +48,7 @@
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         margin: 0;
         min-width: 320px;
+        overflow-x: hidden;
       }
 
       a {
@@ -60,6 +61,7 @@
         color: var(--muted);
         font-size: 1rem;
         line-height: 1.65;
+        overflow-wrap: break-word;
       }
 
       p {
@@ -134,6 +136,8 @@
 
       .hero-inner {
         max-width: 72rem;
+        min-width: 0;
+        width: 100%;
       }
 
       .hero-brand {
@@ -187,7 +191,8 @@
         letter-spacing: 0;
         line-height: 0.94;
         margin: 0;
-        max-width: 12ch;
+        max-width: min(12ch, 100%);
+        overflow-wrap: break-word;
       }
 
       .hero-copy {
@@ -195,7 +200,7 @@
         font-size: clamp(1.05rem, 2vw, 1.35rem);
         line-height: 1.55;
         margin-top: 1.5rem;
-        max-width: 44rem;
+        max-width: min(44rem, 100%);
       }
 
       .hero-actions {
@@ -261,6 +266,8 @@
       .section-inner {
         margin: 0 auto;
         max-width: 74rem;
+        min-width: 0;
+        width: 100%;
       }
 
       .section-kicker {
@@ -277,7 +284,8 @@
         letter-spacing: 0;
         line-height: 1.02;
         margin: 0;
-        max-width: 13ch;
+        max-width: min(13ch, 100%);
+        overflow-wrap: break-word;
       }
 
       .lead {
@@ -285,7 +293,7 @@
         font-size: clamp(1.05rem, 1.8vw, 1.24rem);
         line-height: 1.62;
         margin-top: 1.2rem;
-        max-width: 46rem;
+        max-width: min(46rem, 100%);
       }
 
       .split {
@@ -293,6 +301,17 @@
         display: grid;
         gap: clamp(2rem, 5vw, 4rem);
         grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 1.1fr);
+      }
+
+      .split > *,
+      .problem-grid > *,
+      .intelligence-grid > *,
+      .audience-grid > *,
+      .finance-grid > *,
+      .hero-metrics > *,
+      .loop > *,
+      .cta-grid > * {
+        min-width: 0;
       }
 
       .problem-grid,
@@ -541,8 +560,22 @@
       }
 
       @media (max-width: 520px) {
+        .hero-inner,
+        .section-inner {
+          margin-left: 0;
+          margin-right: 0;
+          max-width: 22rem;
+        }
+
+        .eyebrow {
+          line-height: 1.45;
+          max-width: 20rem;
+        }
+
         h1 {
-          font-size: clamp(2.7rem, 16vw, 4rem);
+          font-size: clamp(2.2rem, 11.5vw, 2.9rem);
+          line-height: 0.98;
+          max-width: 8.8ch;
         }
 
         .hero-actions {
@@ -580,7 +613,7 @@
         <p class="stage-pill">Now forming pilot partnerships</p>
         <p class="eyebrow">Conversational ecological intelligence</p>
         <h1>Ecological AI for productive living systems.</h1>
-        <p class="hero-copy">Shepherdess is being grown as conversational ecological intelligence with a long-term trajectory toward domain-grounded AGI. Its role is to learn a place, connect with the tools that manage it, and help turn ecological understanding into abundance-building action.</p>
+        <p class="hero-copy">Shepherdess is being grown as conversational ecological intelligence with a long-term trajectory toward domain-grounded AGI. Its role is to learn a place, connect with the tools that manage it, and help turn ecological understanding into actions that build the living capital behind durable abundance.</p>
         <div class="hero-actions">
           <a class="button primary" href="#pilot">Join the pilot</a>
           <a class="button secondary" href="#intelligence">See the AI thesis</a>
@@ -593,7 +626,7 @@
           </div>
           <div class="metric">
             <strong>Productive ecology</strong>
-            <span>Food, fertility, shade, water retention, resilience, biodiversity, and productivity produced without degrading ecological capital.</span>
+            <span>Food, fertility, shade, water retention, resilience, biodiversity, and future productivity grown from ecological capital instead of mined from it.</span>
           </div>
           <div class="metric">
             <strong>Field-grown intelligence</strong>
@@ -608,21 +641,21 @@
         <div class="section-inner split">
           <div>
             <p class="section-kicker">The problem</p>
-            <h2>Most land is managed below its productive potential.</h2>
+            <h2>Most land is managed below its living potential.</h2>
           </div>
           <div>
-            <p class="lead">Gardens, lawns, farms, ranches, public landscapes, and corporate properties are often managed for appearance, compliance, or short-term output. The deeper opportunity is productive ecological abundance: food, fertility, water retention, biodiversity, shade, habitat, resilience, and long-term yield from systems that renew themselves.</p>
+            <p class="lead">Gardens, lawns, farms, ranches, public landscapes, and corporate properties are often managed for appearance, compliance, or short-term output while the living base that future production depends on is quietly drawn down. The deeper opportunity is to build ecological capital until the natural dividends of a place exceed its old productive baseline without degrading the system that produces them.</p>
           </div>
         </div>
 
         <div class="section-inner problem-grid">
           <article class="card">
             <h3>Ecological capital is hard to see</h3>
-            <p>Land can be gaining or losing fertility, water capacity, biodiversity, and resilience long before the change appears in financial records or production reports.</p>
+            <p>Land can be gaining or losing fertility, water capacity, biodiversity, and resilience long before the change appears in financial records, production reports, or surface appearance.</p>
           </article>
           <article class="card">
-            <h3>Production and ecology are split</h3>
-            <p>Food, fiber, livestock, soil, water, habitat, budgets, labor, and seasonal timing are usually planned in separate systems.</p>
+            <h3>Production can consume its own base</h3>
+            <p>Short-term yield, neatness, or maintenance targets can reduce the soil, water, habitat, and resilience that make larger future yields possible.</p>
           </article>
           <article class="card">
             <h3>New markets need evidence</h3>
@@ -638,14 +671,14 @@
             <h2>A conversational AI steward for living production.</h2>
           </div>
           <div>
-            <p class="lead">At the center of Shepherdess is an ecological intelligence that can be consulted in ordinary language and grounded in the facts of a place. It helps living systems become legible by actively building site context: land history, current conditions, available tools, budgets, constraints, opportunities, feedback, and change expressed in forms people can understand and act on.</p>
+            <p class="lead">At the center of Shepherdess is an ecological intelligence that can be consulted in ordinary language and grounded in the facts of a place. It helps living systems become legible by actively building site context, then guiding decisions by whether they grow the productive capacity of the system over time, not merely by whether they raise immediate output.</p>
           </div>
         </div>
 
         <div class="section-inner intelligence-grid">
           <article class="card">
             <h3>Ecological translation</h3>
-            <p>Shepherdess connects intent to place: what to plant, where water should move, when to graze, how to reduce inputs, and how to turn land into a productive living system.</p>
+            <p>Shepherdess connects intent to place: what to plant, where water should move, when to graze, how to reduce inputs, and how to build the ecological principal that future dividends come from.</p>
           </article>
           <article class="card">
             <h3>Site discovery</h3>
@@ -677,7 +710,7 @@
             <h2>Conversation backed by site memory and operations.</h2>
           </div>
           <div>
-            <p class="lead">The goal is to make ecological production an intelligent, measurable, compounding process through an AI relationship with the land. Supporting platform surfaces can organize maps, tasks, records, evidence, budgets, and connected tools while Shepherdess remains the primary interface for planning, action, and learning as the site changes.</p>
+            <p class="lead">The goal is to make ecological production an intelligent, measurable, compounding process through an AI relationship with the land. Supporting platform surfaces can organize maps, tasks, records, evidence, budgets, and connected tools while Shepherdess remains the primary interface for planning, action, and learning as the site builds capacity.</p>
           </div>
         </div>
 
@@ -705,7 +738,7 @@
           <div class="loop-step">
             <span>05</span>
             <strong>Learn</strong>
-            <p>Integrate outcomes with the baseline, adapt as ecological complexity changes, and project how increased abundance can expand future options.</p>
+            <p>Integrate outcomes with the baseline, adapt as ecological complexity changes, and project when increased ecological capital can support larger future dividends.</p>
           </div>
         </div>
       </section>
@@ -717,7 +750,7 @@
             <h2>Make ecological improvement visible and financeable.</h2>
           </div>
           <div>
-            <p class="lead">The largest bottleneck in ecological finance is not lack of intent. It is qualifying, quantifying, supervising, and proving that production is increasing ecological capital rather than consuming it. Shepherdess is intended to grow the long-term record behind financeable ecological health.</p>
+            <p class="lead">The largest bottleneck in ecological finance is not lack of intent. It is qualifying, quantifying, supervising, and proving that production is increasing ecological capital rather than consuming it. Shepherdess is intended to grow the long-term record that shows whether a site is moving from drawdown toward compounding ecological dividends.</p>
           </div>
         </div>
 
@@ -732,7 +765,7 @@
           </div>
           <div class="ledger-row">
             <strong>Outcomes</strong>
-            <p>Measure food, fiber, carbon, biodiversity, water retention, resilience, productivity, reduced input dependency, and ecological systems complexity.</p>
+            <p>Measure food, fiber, carbon, biodiversity, water retention, resilience, productivity, reduced input dependency, ecological systems complexity, and the system's capacity to keep producing.</p>
           </div>
           <div class="ledger-row">
             <strong>Finance</strong>
@@ -772,14 +805,14 @@
             <h2>Where ecological industry becomes an investable category.</h2>
           </div>
           <div>
-            <p class="lead">Shepherdess enters through land management and is positioned to grow into a measurement layer for ecological production. Carbon is one doorway. The larger opportunity is non-extractive ecological industry made legible across food, water, biodiversity, resilience, supply-chain, and land-value channels.</p>
+            <p class="lead">Shepherdess enters through land management and is positioned to grow into a measurement layer for ecological production. Carbon is one doorway. The larger opportunity is non-extractive ecological industry: managed systems that build the living base first, then produce food, water, biodiversity, resilience, supply-chain value, and land value from dividends rather than depletion.</p>
           </div>
         </div>
 
         <div class="section-inner finance-grid">
           <article class="card">
             <h3>Carbon and nature finance</h3>
-            <p>Baseline records, interventions, permanence evidence, biodiversity metrics, and outcome history for carbon, nature, and ecological dividend pathways.</p>
+            <p>Baseline records, interventions, permanence evidence, biodiversity metrics, and outcome history showing whether ecological capital is growing before dividends are claimed.</p>
           </article>
           <article class="card">
             <h3>Institutional land portfolios</h3>
@@ -799,7 +832,7 @@
             <h2>From home foodsheds to working landscapes.</h2>
           </div>
           <div>
-            <p class="lead">The same core intelligence can serve personal land, professional land care, production landscapes, and institutional properties because each begins with the same question: how does this living system produce more while becoming more alive over time?</p>
+            <p class="lead">The same core intelligence can serve personal land, professional land care, production landscapes, and institutional properties because each begins with the same question: how does this living system become more capable, then produce more from that increased capacity over time?</p>
           </div>
         </div>
 
