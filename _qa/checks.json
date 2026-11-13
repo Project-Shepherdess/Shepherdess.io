@@ -1,7 +1,8 @@
 {
   "scope": "Local headless browser review; no live contact, field validation or production acceptance",
-  "baseline": "a63cc4b178e97e7c1b9d8589bf721de168d9e4a2",
-  "preserved_headings_paragraphs": 70,
+  "recorded_at_utc": "2026-11-13T18:56:55.458867+00:00",
+  "visual_baseline": "c07b7c4d3b7e2352c7881e7c419a856b168bfc53",
+  "copy_scope": "Owner-authorized full rewrite; historical copy-parity check superseded",
   "results": [
     {
       "engine": "chromium",
@@ -95,9 +96,48 @@
     }
   ],
   "no_js_mobile_engines": 3,
+  "text_resize": [
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "method": "double computed text sizes; not native browser zoom",
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "method": "double computed text sizes; not native browser zoom",
+      "status": "pass"
+    },
+    {
+      "engine": "firefox",
+      "width": 1280,
+      "method": "double computed text sizes; not native browser zoom",
+      "status": "pass"
+    },
+    {
+      "engine": "firefox",
+      "width": 390,
+      "method": "double computed text sizes; not native browser zoom",
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "method": "double computed text sizes; not native browser zoom",
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "method": "double computed text sizes; not native browser zoom",
+      "status": "pass"
+    }
+  ],
   "source_sha256": {
-    "index.html": "2ad58017dd921475ab3c9ceef9594080816ac4345a39f4d31e9d5b72bbe0ffe6",
-    "stylesheets/landing.css": "97d4a0190ec60dd2d8b6ed6db80ea16849910d07baf2cbf86a87f132ea9aff96",
-    "images/aicoop-logo.png": "bf460591d9d0246a03d6db2b4c81bc3720b1d3e1de217c65169a777b499210df"
+    "index.html": "ff3aeddb4ae2cb80e2d9c63e2e627fc2c2c268f6822530c02b204ab44628155f",
+    "stylesheets/landing.css": "e4a914f706e3bf0efa8e381d77cbc5ced0c96a305817fd4a78fb340aa612142f",
+    "images/aicoop-logo.png": "bf460591d9d0246a03d6db2b4c81bc3720b1d3e1de217c65169a777b499210df",
+    "images/image.png": "c765cf6e5495a7770df8297d0f3986ad5bae44fc6136d8464e4deddb6e749879"
   }
 }

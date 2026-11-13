@@ -1,38 +1,18 @@
 """Headless checks of the static landing page; never sends mail or follows external links."""
-import argparse, asyncio, hashlib, json, re, subprocess
+import argparse, asyncio, hashlib, json
+from datetime import datetime, timezone
 from pathlib import Path
-from html.parser import HTMLParser
 from playwright.async_api import async_playwright, expect
 
 ROOT = Path(__file__).resolve().parents[1]
-BASELINE = 'a63cc4b178e97e7c1b9d8589bf721de168d9e4a2'
-
-class Copy(HTMLParser):
-    def __init__(self): super().__init__(); self.depth=0; self.words=[]; self.rows=[]
-    def handle_starttag(self, tag, attrs):
-        if tag in ['h1','h2','h3','p'] and self.depth == 0:
-            self.depth=1;self.words=[]
-        elif self.depth:self.depth+=1
-    def handle_endtag(self, tag):
-        if self.depth:
-            self.depth-=1
-            if self.depth==0:self.rows.append(' '.join(''.join(self.words).split()))
-    def handle_data(self, text):
-        if self.depth:self.words.append(text)
-
-def copy_check():
-    before=Copy();before.feed(subprocess.check_output(['git','show',f'{BASELINE}:index.html'],cwd=ROOT,text=True))
-    after=Copy();after.feed((ROOT/'index.html').read_text())
-    assert before.rows==after.rows, 'Published headings or paragraphs changed'
-    assert hashlib.sha256((ROOT/'images/aicoop-logo.png').read_bytes()).hexdigest()=='bf460591d9d0246a03d6db2b4c81bc3720b1d3e1de217c65169a777b499210df'
-    return len(before.rows)
+BASELINE = 'c07b7c4d3b7e2352c7881e7c419a856b168bfc53'
 
 # Compute contrast for solid surfaces. Image captions are visually reviewed separately.
 CONTRAST = r'''() => {
  const parse = s => {const n=s.match(/[\d.]+/g).map(Number); return {rgb:n.slice(0,3),a:n.length>3?n[3]:1}};
  const lum = rgb => rgb.map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4}).reduce((s,v,i)=>s+v*[.2126,.7152,.0722][i],0);
  const output=[];
- for(const el of document.querySelectorAll('p,h1,h1 em,h2,h3,.metric strong,.metric span,.coop-attribution,.footer-coop,.nav-links a,.button,.loop-step span,.loop-step strong,.ledger-row strong,.method-list span')) {
+ for(const el of document.querySelectorAll('p,h1,h1 em,h2,h2 em,h3,.outcome-mark,.coop-attribution,.footer-coop,.nav-links a,.button,.loop-step span,.method-list li,.place-list span,.contact-line span,.contact-address,.footer-inner > span,.footer-brand')) {
   if(!el.getClientRects().length) continue;
   const style=getComputedStyle(el), fg=parse(style.color);let bg=null, imageSurface=false;
   for(let p=el;p;p=p.parentElement){const c=parse(getComputedStyle(p).backgroundColor);if(c.a===1){bg=c.rgb;imageSurface=p.classList.contains('hero');break;}}
@@ -48,7 +28,8 @@ CONTRAST = r'''() => {
 }'''
 
 async def run(base):
-    paragraphs=copy_check();results=[]
+    assert hashlib.sha256((ROOT/'images/aicoop-logo.png').read_bytes()).hexdigest()=='bf460591d9d0246a03d6db2b4c81bc3720b1d3e1de217c65169a777b499210df'
+    results=[];text_resize=[]
     async with async_playwright() as pw:
         for engine in ['chromium','firefox','webkit']:
             browser=await getattr(pw,engine).launch()
@@ -83,7 +64,7 @@ async def run(base):
                 assert await page.locator('.skip-link').evaluate('(e)=>e===document.activeElement')
                 await page.keyboard.press('Enter')
                 await expect(page).to_have_url(base+'/#main')
-                for target in ['intelligence','system','mrv','markets','pilot']:
+                for target in ['intelligence','system','mrv','participate']:
                     link=page.locator('.nav-links a[href="#'+target+'"]')
                     await link.focus();await page.keyboard.press('Enter')
                     await expect(page).to_have_url(base+'/#'+target)
@@ -91,6 +72,15 @@ async def run(base):
                     header=await page.locator('.site-header').evaluate('(e)=>e.getBoundingClientRect().bottom')
                     assert top>=header-1,(engine,width,target,'anchor hidden',top,header)
                 assert (await page.locator('#pilot .button').get_attribute('href')).startswith('mailto:hello@aicoop.co?subject=')
+                assert (await page.locator('#partners .button').get_attribute('href')).startswith('mailto:hello@aicoop.co?subject=')
+                assert await page.locator('#pilot .button').get_attribute('href') != await page.locator('#partners .button').get_attribute('href')
+                for target in ['pilot','partners']:
+                    await page.goto(base+'/',wait_until='networkidle')
+                    await page.locator('.hero-actions a[href="#'+target+'"]').click()
+                    await expect(page).to_have_url(base+'/#'+target)
+                    top=await page.locator('#'+target).evaluate('(e)=>e.getBoundingClientRect().top')
+                    header=await page.locator('.site-header').evaluate('(e)=>e.getBoundingClientRect().bottom')
+                    assert top>=header-1,(engine,width,target,'hero destination hidden')
                 assert await page.locator('.contact-address').get_attribute('href') == 'mailto:hello@aicoop.co'
                 assert await page.locator('a[href*="info@shepherdess.io"]').count() == 0
                 assert await page.locator('form,iframe').count()==0
@@ -99,19 +89,34 @@ async def run(base):
                 assert all(u.startswith(base+'/') for u in requests),(engine,width,'remote request')
                 if engine=='chromium' and width in [1440,390]:
                     await page.goto(base+'/',wait_until='networkidle')
+                    await page.evaluate('() => {document.activeElement?.blur();window.scrollTo(0,0)}')
                     await page.screenshot(path=str(ROOT/'_qa'/f'after-{width}.png'))
-                    await page.locator('#intelligence').screenshot(path=str(ROOT/'_qa'/f'intelligence-{width}.png'))
-                    await page.locator('footer').screenshot(path=str(ROOT/'_qa'/f'footer-{width}.png'))
+                    await page.screenshot(path=str(ROOT/'_qa'/f'full-{width}.png'),full_page=True)
+                    # Hide the sticky header only for isolated section crops; full-page images are untouched.
+                    for selector,name in [('#intelligence','intelligence'),('#participate','partnerships'),('footer','footer')]:
+                        await page.locator(selector).screenshot(path=str(ROOT/'_qa'/f'{name}-{width}.png'),style='.site-header,.skip-link {visibility:hidden !important}')
                 results.append({'engine':engine,'width':width,'checks':'attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests','status':'pass'})
                 await context.close()
             # No script is needed for mobile navigation or contact.
             context=await browser.new_context(java_script_enabled=False,viewport={'width':390,'height':900})
-            page=await context.new_page();await page.goto(base+'/');await page.locator('.nav-links a[href="#pilot"]').click()
-            await expect(page).to_have_url(base+'/#pilot');assert await page.locator('#pilot .button').is_visible()
-            await context.close();await browser.close()
-    receipt={'scope':'Local headless browser review; no live contact, field validation or production acceptance','baseline':BASELINE,'preserved_headings_paragraphs':paragraphs,'results':results,'no_js_mobile_engines':3,'source_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['index.html','stylesheets/landing.css','images/aicoop-logo.png']}}
+            page=await context.new_page();await page.goto(base+'/');await page.locator('.nav-links a[href="#participate"]').click()
+            await expect(page).to_have_url(base+'/#participate');assert await page.locator('#pilot .button').is_visible()
+            await context.close()
+            for width in [1280,390]:
+                page=await browser.new_page(viewport={'width':width,'height':900})
+                await page.goto(base+'/',wait_until='networkidle')
+                await page.evaluate('''() => {
+                    const els=[...document.querySelectorAll('body *')].filter(e=>[...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim()));
+                    const sizes=els.map(e=>parseFloat(getComputedStyle(e).fontSize));
+                    els.forEach((e,i)=>e.style.fontSize=(sizes[i]*2)+'px');
+                }''')
+                assert await page.evaluate('document.documentElement.scrollWidth<=innerWidth'),(engine,width,'200% text overflow')
+                text_resize.append({'engine':engine,'width':width,'method':'double computed text sizes; not native browser zoom','status':'pass'})
+                await page.close()
+            await browser.close()
+    receipt={'scope':'Local headless browser review; no live contact, field validation or production acceptance','recorded_at_utc':datetime.now(timezone.utc).isoformat(),'visual_baseline':BASELINE,'copy_scope':'Owner-authorized full rewrite; historical copy-parity check superseded','results':results,'no_js_mobile_engines':3,'text_resize':text_resize,'source_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['index.html','stylesheets/landing.css','images/aicoop-logo.png','images/image.png']}}
     (ROOT/'_qa'/'checks.json').write_text(json.dumps(receipt,indent=2)+'\n')
-    print(json.dumps({'combinations':len(results),'preserved_headings_paragraphs':paragraphs,'status':'pass'}))
+    print(json.dumps({'combinations':len(results),'status':'pass'}))
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--base',default='http://127.0.0.1:8689');args=parser.parse_args();asyncio.run(run(args.base))
