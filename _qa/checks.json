@@ -1,0 +1,103 @@
+{
+  "scope": "Local headless browser review; no live contact, field validation or production acceptance",
+  "baseline": "a63cc4b178e97e7c1b9d8589bf721de168d9e4a2",
+  "preserved_headings_paragraphs": 70,
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 1024,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 768,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "firefox",
+      "width": 1024,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "firefox",
+      "width": 768,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "firefox",
+      "width": 390,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "firefox",
+      "width": 320,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 1024,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 768,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 320,
+      "checks": "attribution, assets, links, contrast, keyboard, anchor offset, overflow, reduced motion, no external requests",
+      "status": "pass"
+    }
+  ],
+  "no_js_mobile_engines": 3,
+  "source_sha256": {
+    "index.html": "2ad58017dd921475ab3c9ceef9594080816ac4345a39f4d31e9d5b72bbe0ffe6",
+    "stylesheets/landing.css": "97d4a0190ec60dd2d8b6ed6db80ea16849910d07baf2cbf86a87f132ea9aff96",
+    "images/aicoop-logo.png": "bf460591d9d0246a03d6db2b4c81bc3720b1d3e1de217c65169a777b499210df"
+  }
+}
